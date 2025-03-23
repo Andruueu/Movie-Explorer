@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Explorer</title>
+    <link href="./src/output.css" rel="stylesheet" />
+    <link href="./src/input.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+      body {
+        background: #0d0d0d;
+        color: #fff;
+        font-family: "Orbitron", sans-serif;
+      }
+      .neon-text {
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+      }
+      .glitch {
+        position: relative;
+        animation: glitch 5s infinite;
+      }
+      @keyframes glitch {
+        0% {
+          text-shadow: 2px 2px 5px #ff00ff, -2px -2px 5px #00ffff;
+        }
+        50% {
+          text-shadow: -2px -2px 5px #ff00ff, 2px 2px 5px #00ffff;
+        }
+        100% {
+          text-shadow: 2px 2px 5px #ff00ff, -2px -2px 5px #00ffff;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white">
+    <header></header>
+
+    <div
+      class="min-h-screen flex justify-center items-center h-screen bg-cover bg-center bg-no-repeat w-full relative"
+      style="background-image: url(./src/img/logo.png)"
+    >
+      <div
+        class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-md z-10 pointer-events-none bg-gradient-to-b from-black via-transparent to-black"
+      ></div>
+
+      <h1
+        class="text-4xl md:text-6xl font-bold neon-text glitch inset-0 text-center absolute z-20 py-10"
+      >
+        <a href="./home.html">Movie Explorer</a>
+      </h1>
+
+      <div
+        class="z-20 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 p-8 rounded-lg shadow-lg w-full max-w-md"
+      >
+        <h1 class="text-4xl font-bold text-white text-center mb-6">Log In</h1>
+
+        <form class="space-y-4">
+          <div class="relative">
+            <input
+              type="text"
+              id="username"
+              class="w-full px-4 py-2 rounded-lg text-white bg-transparent border-2 border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg placeholder-gray-400"
+              placeholder="Username"
+            />
+          </div>
+
+          <div class="relative">
+            <input
+              type="password"
+              id="password"
+              class="w-full px-4 py-2 rounded-lg text-white bg-transparent border-2 border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg placeholder-gray-400"
+              placeholder="Password"
+            />
+          </div>
+
+          <div class="text-center">
+            <button
+              type="submit"
+              class="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white font-semibold shadow-lg transform hover:scale-105 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              Log In as Administrator
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
