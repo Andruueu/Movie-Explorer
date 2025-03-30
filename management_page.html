@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Explorer - Management</title>
+    <link href="./src/output.css" rel="stylesheet" />
+    <link href="./src/input.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+      body {
+        background: #0d0d0d;
+        color: #fff;
+        font-family: "Orbitron", sans-serif;
+      }
+      .neon-text {
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+      }
+      .glitch {
+        position: relative;
+        animation: glitch 5s infinite;
+      }
+      @keyframes glitch {
+        0% {
+          text-shadow: 2px 2px 5px #ff00ff, -2px -2px 5px #00ffff;
+        }
+        50% {
+          text-shadow: -2px -2px 5px #ff00ff, 2px 2px 5px #00ffff;
+        }
+        100% {
+          text-shadow: 2px 2px 5px #ff00ff, -2px -2px 5px #00ffff;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-black text-white relative flex items-center justify-center min-h-screen"
+  >
+    <header></header>
+
+    <div
+      class="min-h-screen h-auto bg-cover bg-center bg-no-repeat w-full relative blur-lg"
+      style="background-image: url(./src/img/logo.png)"
+    >
+      <h1
+        class="text-2xl md:text-4xl font-bold neon-text glitch inset-0 text-center absolute z-20 py-10"
+      >
+        <a href="./home.html">Movie Explorer - Admin</a>
+      </h1>
+    </div>
+
+    <div
+      class="absolute justify-center items-center bg-gradient-to-r from-pink-600 to-purple-700 p-8 md:p-10 w-full max-w-4xl rounded-lg shadow-lg text-white"
+    >
+      <div
+        class="relative mt-60 inset-0 backdrop-blur-md w-full opacity-20 bg-gradient-to-b from-purple-600 via-pink-600 to-blue-600 rounded-lg shadow-lg max-w-full"
+      ></div>
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">
+        Add a Movie
+      </h2>
+
+      <label for="title" class="mt-5 block text-lg font-semibold"
+        >Movie Title</label
+      >
+      <input
+        type="text"
+        id="title"
+        placeholder="e.g.: Interstellar"
+        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+      />
+
+      <label for="genre" class="mt-5 block text-lg font-semibold"
+        >Movie Genre</label
+      >
+      <select
+        id="genre"
+        class="w-full mt-5 mb-4 appearance-none p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+      >
+        <option>Action</option>
+        <option>Adventure</option>
+        <option>Comedy</option>
+        <option>Drama</option>
+        <option>Horror</option>
+        <option>Thriller</option>
+        <option>Mystery</option>
+        <option>Fantasy</option>
+        <option>Sci-Fi</option>
+        <option>Romance</option>
+        <option>Crime</option>
+        <option>Western</option>
+        <option>Historical</option>
+        <option>War</option>
+        <option>Musical</option>
+        <option>Animation</option>
+        <option>Superhero</option>
+        <option>Family</option>
+        <option>Documentary</option>
+        <option>Anime</option>
+        <option>Survival</option>
+        <option>Heist</option>
+        <option>Teen</option>
+        <option>Supernatural</option>
+        <option>Detective</option>
+        <option>Mythological</option>
+        <option>Dance Movie</option>
+        <option>Anthology</option>
+      </select>
+
+      <label for="poster" class="mt-5 block text-lg font-semibold"
+        >Movie Poster</label
+      >
+      <input
+        type="file"
+        id="poster"
+        accept="image/*"
+        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-800 text-white border border-gray-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-400"
+      />
+
+      <label for="description" class="block text-lg font-semibold"
+        >Movie Description</label
+      >
+      <textarea
+        id="description"
+        rows="10"
+        placeholder="Write movie description..."
+        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+      ></textarea>
+
+      <label for="Rating" class="mt-5 block text-lg font-semibold"
+        >Movie's Rating</label
+      >
+      <input
+        type="number"
+        id="rating"
+        placeholder="e.g.: 8.5"
+        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+      />
+
+      <label for="yearSelect" class="mt-5 block text-lg font-semibold"
+        >Movie's Year</label
+      >
+      <input
+        type="date"
+        id="year"
+        class="mt-5 text-white p-3 font-bold border bg-gray-800 border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+      />
+
+      <label class="mt-5 block text-lg font-semibold" for="movieTrailerLink"
+        >Movie Trailer Link</label
+      >
+      <input
+        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        type="url"
+        id="movieTrailer"
+        name="movieTrailerLink"
+        placeholder="https://www.youtube.com/watch?v=XXXXXXXXXXX"
+        required
+      />
+      <button
+        class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
+      >
+        Add Movie to Website
+      </button>
+      <a href="./home.html"
+        ><button
+          class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
+        >
+          Go to home page
+        </button></a
+      >
+    </div>
+
+    <script src="./management_page.html"></script>
+  </body>
+</html>
