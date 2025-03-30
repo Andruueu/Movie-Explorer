@@ -57,11 +57,11 @@
       >
         <h1 class="text-4xl font-bold text-white text-center mb-6">Log In</h1>
 
-        <form class="space-y-4">
+        <div class="space-y-4">
           <div class="relative">
             <input
               type="text"
-              id="username"
+              id="user"
               class="w-full px-4 py-2 rounded-lg text-white bg-transparent border-2 border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg placeholder-gray-400"
               placeholder="Username"
             />
@@ -78,14 +78,23 @@
 
           <div class="text-center">
             <button
-              type="submit"
+              onclick="verifyAdmin();"
               class="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white font-semibold shadow-lg transform hover:scale-105 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Log In as Administrator
             </button>
           </div>
-        </form>
+          <div class="text-center">
+            <button
+              class="w-full px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white font-semibold shadow-lg transform hover:scale-105 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              onclick="window.location.href='./home.html';"
+            >
+              Continue without LogIn
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="./login_page.js"></script>
   </body>
 </html>
