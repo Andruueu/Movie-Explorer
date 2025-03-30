@@ -43,13 +43,7 @@
     <div
       class="min-h-screen h-auto bg-cover bg-center bg-no-repeat w-full relative blur-lg"
       style="background-image: url(./src/img/logo.png)"
-    >
-      <h1
-        class="text-2xl md:text-4xl font-bold neon-text glitch inset-0 text-center absolute z-20 py-10"
-      >
-        <a href="./home.html">Movie Explorer - Admin</a>
-      </h1>
-    </div>
+    ></div>
 
     <div
       class="absolute justify-center items-center bg-gradient-to-r from-pink-600 to-purple-700 p-8 md:p-10 w-full max-w-4xl rounded-lg shadow-lg text-white"
@@ -66,16 +60,29 @@
       >
       <input
         type="text"
-        id="title"
+        id="movieTitle"
         placeholder="e.g.: Interstellar"
-        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        class="w-full p-2 rounded-md bg-gray-900 text-white border border-gray-600"
       />
+      <button
+        onclick="fetchMovie()"
+        class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
+      >
+        Search movie
+      </button>
+      <button
+        id="deleteMovie"
+        onclick="deleteMovieFromHome()"
+        class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
+      >
+        Delete Movie from Website
+      </button>
 
       <label for="genre" class="mt-5 block text-lg font-semibold"
         >Movie Genre</label
       >
       <select
-        id="genre"
+        id="movieGenre"
         class="w-full mt-5 mb-4 appearance-none p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
       >
         <option>Action</option>
@@ -112,9 +119,8 @@
         >Movie Poster</label
       >
       <input
-        type="file"
-        id="poster"
-        accept="image/*"
+        type="url"
+        id="moviePoster"
         class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-800 text-white border border-gray-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-400"
       />
 
@@ -122,7 +128,7 @@
         >Movie Description</label
       >
       <textarea
-        id="description"
+        id="movieDescription"
         rows="10"
         placeholder="Write movie description..."
         class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
@@ -133,7 +139,7 @@
       >
       <input
         type="number"
-        id="rating"
+        id="movieRating"
         placeholder="e.g.: 8.5"
         class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
       />
@@ -142,8 +148,10 @@
         >Movie's Year</label
       >
       <input
-        type="date"
-        id="year"
+        type="number"
+        min="1900"
+        max="2025"
+        id="movieYear"
         class="mt-5 text-white p-3 font-bold border bg-gray-800 border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
       />
 
@@ -159,10 +167,13 @@
         required
       />
       <button
+        id="addMovie"
+        onclick="addMovieToHome()"
         class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
       >
         Add Movie to Website
       </button>
+
       <a href="./home.html"
         ><button
           class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
@@ -172,6 +183,6 @@
       >
     </div>
 
-    <script src="./management_page.html"></script>
+    <script src="./management_page.js"></script>
   </body>
 </html>
