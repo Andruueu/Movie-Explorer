@@ -33,26 +33,61 @@
           text-shadow: 2px 2px 5px #ff00ff, -2px -2px 5px #00ffff;
         }
       }
+      .animate-scale-in {
+        animation: scaleIn 0.3s ease-out forwards;
+      }
+      @keyframes scaleIn {
+        0% {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
     </style>
   </head>
   <body
-    class="bg-black text-white relative flex items-center justify-center min-h-screen"
+    class="bg-black text-white relative flex items-center justify-center min-h-screen px-4"
   >
-    <header></header>
-
     <div
-      class="min-h-screen h-auto bg-cover bg-center bg-no-repeat w-full relative blur-lg"
+      class="absolute inset-0 h-full bg-cover bg-center bg-no-repeat blur-lg opacity-20"
       style="background-image: url(./src/img/logo.png)"
     ></div>
 
+    <!-- Popup -->
     <div
-      class="absolute justify-center items-center bg-gradient-to-r from-pink-600 to-purple-700 p-8 md:p-10 w-full max-w-4xl rounded-lg shadow-lg text-white"
+      id="popup"
+      class="absolute hidden right-1/2 translate-x-1/2 top-1/2 -translate-y-1/2 items-center justify-center z-50 p-4"
     >
       <div
-        class="relative mt-60 inset-0 backdrop-blur-md w-full opacity-20 bg-gradient-to-b from-purple-600 via-pink-600 to-blue-600 rounded-lg shadow-lg max-w-full"
-      ></div>
-      <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">
-        Add a Movie
+        class="bg-[#0d0d0d] border-2 border-cyan-400 rounded-2xl shadow-[0_0_30px_#0ff,0_0_60px_#f0f] p-6 text-center w-full max-w-md animate-scale-in"
+      >
+        <h2
+          class="text-cyan-400 text-xl md:text-2xl font-bold mb-2 drop-shadow-[0_0_5px_#0ff]"
+        >
+          ⚡ New Notification
+        </h2>
+        <p
+          id="popup-message"
+          class="text-gray-300 text-sm md:text-base mb-4"
+        ></p>
+        <button
+          onclick="closePopup()"
+          class="bg-cyan-400 text-black px-4 py-2 rounded-xl hover:bg-fuchsia-500 hover:text-white transition-all font-bold w-full md:w-auto"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="relative z-10 w-full max-w-4xl p-6 sm:p-8 md:p-10 lg:p-12 rounded-lg bg-gradient-to-r from-pink-600 to-purple-700 shadow-lg text-white mx-auto"
+    >
+      <!-- Add a Movie form -->
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 py-6">
+        Add a Movie - Movie Management
       </h2>
 
       <label for="title" class="mt-5 block text-lg font-semibold"
@@ -64,26 +99,28 @@
         placeholder="e.g.: Interstellar"
         class="w-full p-2 rounded-md bg-gray-900 text-white border border-gray-600"
       />
+
       <button
         onclick="fetchMovie()"
-        class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
+        class="mt-6 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
       >
         Search movie
       </button>
+
       <button
         id="deleteMovie"
         onclick="deleteMovieFromHome()"
-        class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
+        class="mt-4 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
       >
         Delete Movie from Website
       </button>
 
-      <label for="genre" class="mt-5 block text-lg font-semibold"
+      <label for="genre" class="mt-6 block text-lg font-semibold"
         >Movie Genre</label
       >
       <select
         id="movieGenre"
-        class="w-full mt-5 mb-4 appearance-none p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        class="w-full mt-2 appearance-none p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
       >
         <option>Action</option>
         <option>Adventure</option>
@@ -115,36 +152,36 @@
         <option>Anthology</option>
       </select>
 
-      <label for="poster" class="mt-5 block text-lg font-semibold"
+      <label for="poster" class="mt-6 block text-lg font-semibold"
         >Movie Poster</label
       >
       <input
         type="url"
         id="moviePoster"
-        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-800 text-white border border-gray-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-400"
+        class="w-full mt-2 p-3 rounded-md bg-gray-800 text-white border border-gray-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-400"
       />
 
-      <label for="description" class="block text-lg font-semibold"
+      <label for="description" class="mt-6 block text-lg font-semibold"
         >Movie Description</label
       >
       <textarea
         id="movieDescription"
-        rows="10"
+        rows="6"
         placeholder="Write movie description..."
-        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        class="w-full mt-2 p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
       ></textarea>
 
-      <label for="Rating" class="mt-5 block text-lg font-semibold"
+      <label for="Rating" class="mt-6 block text-lg font-semibold"
         >Movie's Rating</label
       >
       <input
         type="number"
         id="movieRating"
         placeholder="e.g.: 8.5"
-        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        class="w-full mt-2 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
       />
 
-      <label for="yearSelect" class="mt-5 block text-lg font-semibold"
+      <label for="yearSelect" class="mt-6 block text-lg font-semibold"
         >Movie's Year</label
       >
       <input
@@ -152,35 +189,36 @@
         min="1900"
         max="2025"
         id="movieYear"
-        class="mt-5 text-white p-3 font-bold border bg-gray-800 border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        class="w-full mt-2 p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
       />
 
-      <label class="mt-5 block text-lg font-semibold" for="movieTrailerLink"
+      <label class="mt-6 block text-lg font-semibold" for="movieTrailerLink"
         >Movie Trailer Link</label
       >
       <input
-        class="w-full mt-5 mb-4 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        class="w-full mt-2 p-3 rounded-md bg-gray-900 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-pink-400"
         type="url"
         id="movieTrailer"
         name="movieTrailerLink"
         placeholder="https://www.youtube.com/watch?v=XXXXXXXXXXX"
         required
       />
+
       <button
         id="addMovie"
         onclick="addMovieToHome()"
-        class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
+        class="mt-8 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
       >
         Add Movie to Website
       </button>
 
-      <a href="./home.html"
-        ><button
-          class="mt-10 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
+      <a href="./home.html">
+        <button
+          class="mt-4 w-full bg-pink-600 hover:bg-pink-500 text-white py-3 rounded-md font-semibold transition"
         >
           Go to home page
-        </button></a
-      >
+        </button>
+      </a>
     </div>
 
     <script src="./management_page.js"></script>
