@@ -37,6 +37,7 @@ function deleteMovieFromWatchlist(btnId) {
 }
 
 function addMovieToHome() {
+  
   const title = document.getElementById("movieTitle").value;
   const year = document.getElementById("movieYear").value;
   const genre = document.getElementById("movieGenre").value;
@@ -55,10 +56,21 @@ function addMovieToHome() {
     description,
   };
 
-  const movies = JSON.parse(localStorage.getItem("movies")) || [];
-  movies.push(movie);
-  localStorage.setItem("movies", JSON.stringify(movies));
-  showPopup("The movie has been added to Home page!");
+  const movies = JSON.parse(localStorage.getItem("movies"));
+  let existingMovie = false;
+  for (let i = 0; i < movies.length; i++) {
+    if (movie.title.toUpperCase() == movies[i].title.toUpperCase()) {
+      showPopup("The movie is already added to home page.");
+      existingMovie = true;
+      break;
+    }
+  }
+  if (!existingMovie) {
+    movies.push(movie);
+    localStorage.setItem("movies", JSON.stringify(movies));
+    showPopup("The movie has been added to Home page!");
+  }
+
   document.getElementById("movieTitle").value = "";
   document.getElementById("movieYear").value = "";
   document.getElementById("movieGenre").value = "";
@@ -130,8 +142,6 @@ function movieCardStyling(localStorage_key, watchlist) {
     localStorage.getItem(`${localStorage_key}`)
   );
 
-  console.log("mov");
-
   if (localStorageTemp == null) {
     document.getElementById("movieCard").innerHTML = "No content yet.";
   } else {
@@ -148,6 +158,7 @@ function movieCardStyling(localStorage_key, watchlist) {
       if (currentMovie.description.length > 150) {
         short_description += "...";
       }
+      //Transforma titlul filmului intr-un id fara spatii , tot cu litere mici
       const sanitizedTitle = currentMovie.title
         .replace(/\s+/g, "-")
         .toLowerCase();
@@ -358,8 +369,7 @@ window.onscroll = function () {
   }
 };
 
-let initial_array=
-[
+let initial_array = [
   {
     title: "scary movie",
     year: "2000",
@@ -596,4 +606,6 @@ let initial_array=
   },
 ];
 
-localStorage.setItem("movies", JSON.stringify(initial_array));
+if(JSON.parse(localStorage.getItem("movies")) == null){
+  localStorage.setItem("movies", JSON.stringify(initial_array));
+}
